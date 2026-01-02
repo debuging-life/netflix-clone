@@ -3,7 +3,7 @@ name: iOS CI/CD
 on:
   push:
     branches:
-      - develop
+      - development
   workflow_dispatch:
 
 jobs:
