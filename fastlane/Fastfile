@@ -1,0 +1,52 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+# Fastfile
+# Fastfile
+
+# Fastfile - Final clean version
+default_platform(:ios)
+
+platform :ios do
+  desc "Upload build to TestFlight"
+  lane :beta do
+    # Clear any cached data
+    clear_derived_data
+    
+    # Build
+    build_app(
+      scheme: "netflix-clone-github",
+      export_method: "app-store",
+      clean: true
+    )
+    
+    # Upload
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+  
+  desc "Release to App Store"
+  lane :release do
+    build_app(
+      scheme: "netflix-clone-github",
+      export_method: "app-store"
+    )
+    
+    upload_to_app_store(
+      submit_for_review: false,
+      automatic_release: false
+    )
+  end
+end
