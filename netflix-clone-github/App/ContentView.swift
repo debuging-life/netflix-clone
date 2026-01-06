@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import ToastUI
 
 struct ContentView: View {
     @State var showSplash: Bool = true
+    @State var authVM: AuthVM = AuthVM(service: AuthService(), toast: ToastManager.shared)
+    @State var movieVM = MovieVM(movieService: MovieService(), toast: ToastManager.shared)
     @AppStorage("onboardingCompleted") var onboardingCompleted: Bool = false
 
     var body: some View {
@@ -18,14 +21,30 @@ struct ContentView: View {
                     .transition(.opacity.combined(with: .move(edge: .leading)))
             } else {
                 switch onboardingCompleted {
-                   case true:
-                    AuthCoordinatorView()
-                    .transition(.opacity.combined(with: .move(edge: .trailing)))
+                case true:
+                    switch authVM.isAuthenticated {
+                    case true:
+                        TabView {
+                            HomeCoordinatorView(movieVM: movieVM)
+                                .tabItem {
+                                    Image(systemName: "house")
+                                    Text("Home")
+                                }
+                            ProfileView(authVM: authVM)
+                                .tabItem {
+                                    Image(systemName: "person")
+                                    Text("Profile")
+                                }
+                        }
+                    case false:
+                        AuthCoordinatorView(authVM: authVM)
+                            .transition(.opacity.combined(with: .move(edge: .trailing)))
+                    }
                 case false:
                     OnboardingView()
                         .transition(.opacity.combined(with: .move(edge: .trailing)))
                 }
-                
+
             }
         }
         .animation(.easeIn(duration: 0.5), value: showSplash)

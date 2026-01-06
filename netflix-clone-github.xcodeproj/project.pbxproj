@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06BC00C92F07824300352100 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC00C82F07824300352100 /* ToastUI */; };
+		062787432F0CC97B00B3856D /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 062787422F0CC97B00B3856D /* YouTubePlayerKit */; };
 		06BC00D32F0788CF00352100 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC00D22F0788CF00352100 /* SwiftUINavigation */; };
+		06BC00E52F0AEA8500352100 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC00E42F0AEA8500352100 /* Auth */; };
+		06BC00E72F0AEA8500352100 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC00E62F0AEA8500352100 /* Storage */; };
+		06BC00E92F0AEA8500352100 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC00E82F0AEA8500352100 /* Supabase */; };
+		06BC01082F0B515300352100 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC01072F0B515300352100 /* Kingfisher */; };
+		06BC010E2F0C58AC00352100 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 06BC010D2F0C58AC00352100 /* ToastUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +33,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				062787432F0CC97B00B3856D /* YouTubePlayerKit in Frameworks */,
+				06BC010E2F0C58AC00352100 /* ToastUI in Frameworks */,
+				06BC01082F0B515300352100 /* Kingfisher in Frameworks */,
+				06BC00E92F0AEA8500352100 /* Supabase in Frameworks */,
+				06BC00E72F0AEA8500352100 /* Storage in Frameworks */,
 				06BC00D32F0788CF00352100 /* SwiftUINavigation in Frameworks */,
-				06BC00C92F07824300352100 /* ToastUI in Frameworks */,
+				06BC00E52F0AEA8500352100 /* Auth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,8 +82,13 @@
 			);
 			name = "netflix-clone-github";
 			packageProductDependencies = (
-				06BC00C82F07824300352100 /* ToastUI */,
 				06BC00D22F0788CF00352100 /* SwiftUINavigation */,
+				06BC00E42F0AEA8500352100 /* Auth */,
+				06BC00E62F0AEA8500352100 /* Storage */,
+				06BC00E82F0AEA8500352100 /* Supabase */,
+				06BC01072F0B515300352100 /* Kingfisher */,
+				06BC010D2F0C58AC00352100 /* ToastUI */,
+				062787422F0CC97B00B3856D /* YouTubePlayerKit */,
 			);
 			productName = "netflix-clone-github";
 			productReference = 06BC00952F0764A400352100 /* netflix-clone-github.app */;
@@ -104,8 +119,11 @@
 			mainGroup = 06BC008C2F0764A400352100;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				06BC00C72F07824300352100 /* XCRemoteSwiftPackageReference "toastUI" */,
 				06BC00D12F0788CF00352100 /* XCRemoteSwiftPackageReference "SwiftUINavigation" */,
+				06BC00E32F0AEA8500352100 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				06BC01062F0B515300352100 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				06BC010C2F0C58AC00352100 /* XCRemoteSwiftPackageReference "toastUI" */,
+				062787412F0CC97B00B3856D /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 06BC00962F0764A400352100 /* Products */;
@@ -347,12 +365,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		06BC00C72F07824300352100 /* XCRemoteSwiftPackageReference "toastUI" */ = {
+		062787412F0CC97B00B3856D /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/debuging-life/toastUI";
+			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.5;
 			};
 		};
 		06BC00D12F0788CF00352100 /* XCRemoteSwiftPackageReference "SwiftUINavigation" */ = {
@@ -363,18 +381,67 @@
 				kind = branch;
 			};
 		};
+		06BC00E32F0AEA8500352100 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+		06BC01062F0B515300352100 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+		06BC010C2F0C58AC00352100 /* XCRemoteSwiftPackageReference "toastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/debuging-life/toastUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		06BC00C82F07824300352100 /* ToastUI */ = {
+		062787422F0CC97B00B3856D /* YouTubePlayerKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 06BC00C72F07824300352100 /* XCRemoteSwiftPackageReference "toastUI" */;
-			productName = ToastUI;
+			package = 062787412F0CC97B00B3856D /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
+			productName = YouTubePlayerKit;
 		};
 		06BC00D22F0788CF00352100 /* SwiftUINavigation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 06BC00D12F0788CF00352100 /* XCRemoteSwiftPackageReference "SwiftUINavigation" */;
 			productName = SwiftUINavigation;
+		};
+		06BC00E42F0AEA8500352100 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06BC00E32F0AEA8500352100 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		06BC00E62F0AEA8500352100 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06BC00E32F0AEA8500352100 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		06BC00E82F0AEA8500352100 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06BC00E32F0AEA8500352100 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		06BC01072F0B515300352100 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06BC01062F0B515300352100 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		06BC010D2F0C58AC00352100 /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06BC010C2F0C58AC00352100 /* XCRemoteSwiftPackageReference "toastUI" */;
+			productName = ToastUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

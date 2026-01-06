@@ -11,7 +11,7 @@ import SwiftUINavigation
 enum AuthDestinations: Hashable {
     case signin
     case signup
-    case verifyEmail
+    case verifyEmail(String)
 }
 
 typealias AuthCoordinator = NavigationCoordinator<AuthDestinations>

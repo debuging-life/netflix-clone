@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcodebuild:*)",
+      "Bash(find:*)",
+      "Bash(xcrun sourcekit-lsp:*)",
+      "Bash(xcrun:*)",
+      "Bash(ls:*)",
+      "Bash(brew install:*)",
+      "Bash(xcode-build-server config:*)",
+      "Bash(xcode-build-server build:*)",
+      "Bash(XBS_FEAT_NEWFILE=1 xcode-build-server config:*)",
+      "Bash(bash:*)",
+      "Bash(WORKSPACE_PATH=\"/Users/pardipbhatti/Desktop/netflix-clone-github/netflix-clone-github.xcodeproj/project.xcworkspace\" SCHEME_NAME=\"netflix-clone-github\" bash:*)",
+      "Bash(cat:*)",
+      "Bash(xcode-build-server parse:*)",
+      "Bash(python3:*)",
+      "Bash(tee:*)"
+    ]
+  }
+}

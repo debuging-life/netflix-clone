@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct VerifyEmail: View {
-//    var email: String
+    var email: String
+    var authVM: AuthVM
     @Environment(\.authCoordinator) var router
     @Environment(\.toast) var toast
+    
     
     @State var isInvalid: Bool = false
     @State var code: String = ""
@@ -45,6 +47,10 @@ struct VerifyEmail: View {
             .ignoresSafeArea()
             
             VStack {
+                Text("OTP for email \(email)")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                
                 VerificationField(
                     type: .six,
                     isInValid: $isInvalid,
@@ -55,6 +61,9 @@ struct VerifyEmail: View {
                         print("final value", value)
                         // api call here
                         code = value
+                        Task {
+                            await authVM.verifyEmail(email: email, otp: value)
+                        }
                     },
                     configuration: .init(
                         colors: .init(
@@ -77,5 +86,5 @@ struct VerifyEmail: View {
 }
 
 #Preview {
-    VerifyEmail()
+//    VerifyEmail(email: "", authVM: AuthV)
 }

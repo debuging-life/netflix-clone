@@ -9,10 +9,13 @@ import SwiftUI
 import SwiftUINavigation
 
 struct AuthCoordinatorView: View {
+    @Environment(\.toast) var toast
+    @State var authVM: AuthVM
+    
     var body: some View {
         CoordinatorView(
             environmentKeyPath: \.authCoordinator) {
-                SignIn()
+                SignIn(authVM: authVM)
                     .navigationBarBackButtonHidden()
                     .toolbar {
 //                        ToolbarItem(placement: .topBarLeading) {
@@ -32,7 +35,7 @@ struct AuthCoordinatorView: View {
             } destinationBuilder: { destination in
                 switch destination {
                 case .signin:
-                    SignIn()
+                    SignIn(authVM: authVM)
                         .navigationBarBackButtonHidden()
                         .toolbar {
 //                            ToolbarItem(placement: .topBarLeading) {
@@ -50,7 +53,7 @@ struct AuthCoordinatorView: View {
                             .sharedBackgroundVisibility(.hidden)
                         }
                 case .signup:
-                    Signup()
+                    Signup(authVM: authVM)
                         .toolbar {
                             ToolbarItem(placement: .principal) {
                                 NetflixLogoView()
@@ -62,8 +65,8 @@ struct AuthCoordinatorView: View {
                             .sharedBackgroundVisibility(.hidden)
                         }
                     
-                case .verifyEmail:
-                    VerifyEmail()
+                case .verifyEmail(let email):
+                    VerifyEmail(email: email, authVM: authVM)
                         .toolbar {
                             ToolbarItem(placement: .principal) {
                                 NetflixLogoView()
@@ -79,9 +82,9 @@ struct AuthCoordinatorView: View {
     }
 }
 
-#Preview {
-    AuthCoordinatorView()
-}
+//#Preview {
+//    AuthCoordinatorView(, authVM: <#AuthVM#>)
+//}
 
 struct BackButton: View {
     @Environment(\.authCoordinator) var coordinator

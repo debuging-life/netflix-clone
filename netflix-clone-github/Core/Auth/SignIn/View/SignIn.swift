@@ -7,20 +7,22 @@
 
 import SwiftUI
 import SwiftUINavigation
+import ToastUI
 
 struct SignIn: View {
     @Environment(\.authCoordinator) var authCoordinator
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State var authVM: AuthVM
+
+    @State var authModel: AuthModel = AuthModel()
     @State private var showPassword: Bool = false
-    
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             VStack(spacing: 20) {
                 TextField(
                     "",
-                    text: $email,
+                    text: $authModel.email,
                     prompt: Text("Email or phone number")
                         .foregroundStyle(.white)
                 )
@@ -29,14 +31,15 @@ struct SignIn: View {
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 .padding()
-                .background(.darkGray)
+                .background(.customDarkGray)
                 .foregroundStyle(.white)
                 .cornerRadius(4)
-                
+                .disabled(authVM.loading)
+
                 if showPassword {
                     TextField(
                         "",
-                        text: $password,
+                        text: $authModel.password,
                         prompt: Text("Password")
                             .foregroundStyle(.white)
                     )
@@ -56,13 +59,14 @@ struct SignIn: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .padding()
-                    .background(.darkGray)
+                    .background(.customDarkGray)
                     .foregroundStyle(.white)
                     .cornerRadius(4)
+                    .disabled(authVM.loading)
                 } else {
                     SecureField(
                         "",
-                        text: $password,
+                        text: $authModel.password,
                         prompt: Text("Password").foregroundStyle(.white)
                     )
                     .overlay {
@@ -80,28 +84,40 @@ struct SignIn: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .padding()
-                    .background(.darkGray)
+                    .background(.customDarkGray)
                     .foregroundStyle(.white)
                     .cornerRadius(4)
+                    .disabled(authVM.loading)
                 }
-                
+
                 HStack {
                     Button("Forgot Password?") {
-                        
+
                     }
                     .font(.headline)
                     .foregroundStyle(.white)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                
-                ButtonNetflix(text: "SIGN IN") {
-                    
-                }
+
+                ButtonNetflix(
+                    text: "SIGN IN", disabled: authVM.loading,
+                    icon: {
+                        if authVM.loading {
+                            ProgressView()
+                                .tint(.white)
+                        }
+                    },
+                    action: {
+                        Task {
+                            await authVM.signin(for: authModel)
+                        }
+                    }
+                )
                 .padding(.top)
-                
+
                 Text("OR")
                     .foregroundStyle(.white.opacity(0.5))
-                
+
                 HStack {
                     Text("Don't have an account?")
                     Button("Sign Up") {
@@ -109,13 +125,14 @@ struct SignIn: View {
                     }
                 }
                 .foregroundStyle(.white)
-                
+
             }
             .padding(.horizontal)
         }
+
     }
 }
 
 #Preview {
-    SignIn()
+    SignIn(authVM: AuthVM(service: AuthService(), toast: ToastManager.shared))
 }
